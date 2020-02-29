@@ -61,7 +61,7 @@ class ServiceBase(object):
         start the logging context for each request
         :return:
         """
-        flask.g.loggingContext = FlaskRequestLoggingContext()
+        flask.g.loggingContext = FlaskRequestLoggingContext(autoStore=True)
         flask.g.metadata = dict(
             STARTTIME=time.time(),
         )

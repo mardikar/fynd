@@ -18,7 +18,7 @@ class StringLogger(object):
         self.logger.addHandler(self.handler)
 
     def getLogs(self, removeOld=False):
-        value = self.stream.getValue()
+        value = self.stream.getvalue()
         if removeOld:
             self.stream.truncate(0)
         return value
@@ -88,7 +88,7 @@ class RequestLoggingContext(object):
 class FlaskLogEnricher(LogEnricher):
 
     def _enrichLogs(self):
-        enrichedLogs = LogEnricher._enrichLogs()
+        enrichedLogs = LogEnricher._enrichLogs(self)
         enrichedLogs['USER'] = flask.request.remote_user
         enrichedLogs['URL'] = flask.request.url
         enrichedLogs['HTTP_METHOD'] = flask.request.method
