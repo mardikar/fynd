@@ -4,6 +4,7 @@ import logging
 from imdb.cache import ImdbCache
 from lib.io.serializer.json_serializer import JsonSerializer
 from lib.services.rest.flask_service.base import ServiceBase, createJsonResponse
+from imdb.imdb_json_schemas import ImdbJsonSchemaValidtor
 
 
 class HttpMethods(object):
@@ -26,7 +27,9 @@ class ImdbService(ServiceBase):
 
     @property
     def postData(self):
-        return JsonSerializer.fromJson(flask.request.data)['data']
+        data = JsonSerializer.fromJson(flask.request.data)['data']
+        ImdbJsonSchemaValidtor.validate(data)
+        return data
 
     def addMovie(self):
         try:

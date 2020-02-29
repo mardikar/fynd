@@ -87,6 +87,9 @@ class SqliteDb(object):
                 updated = 'imdb_score = %s' % movieData['imdb_score']
                 updateQuery = "UPDATE movies SET %s where name == '%s' and director == '%s'" % (updated, name, director)
                 cursor.execute(updateQuery)
+                genres = movieData['genres']
+                for genre in genres:
+                    cursor.execute("INSERT INTO genres VALUES('%s', '%s', '%s')" % (name, director, genre))
             else:
                 self.__sqliteClient.rollback()
                 raise Exception("%s doesn't exist! Can't update." % movieData)
@@ -100,6 +103,9 @@ class SqliteDb(object):
                 t = "'%s', '%s', %s, %s" % (name, director, movieData['imdb_score'], movieData.get('popularity', 'null'))
                 updateQuery = "INSERT INTO movies VALUES(%s)" % t
                 cursor.execute(updateQuery)
+                genres = movieData['genres']
+                for genre in genres:
+                    cursor.execute("INSERT INTO genres VALUES('%s', '%s', '%s')" % (name, director, genre))
             else:
                 self.__sqliteClient.rollback()
                 raise Exception("%s already exists! Can't create." % movieData)
