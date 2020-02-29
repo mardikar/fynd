@@ -70,4 +70,4 @@ class ImdbJsonSchemaValidtor(object):
 
     @classmethod
     def validate(cls, jsonData):
-        validate(getattr(cls, "%s_JSON_SCHEMA"%flask.request.method.upper()), jsonData)
+        validate(getattr(cls, "%s_JSON_SCHEMA" % flask.request.method.upper()), jsonData)
