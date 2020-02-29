@@ -12,7 +12,7 @@ class JsonSerializer(object):
 
     @classmethod
     def fromJson(cls, jsonString):
-        return cls(simplejson.loads(jsonString))
+        return simplejson.loads(jsonString)
 
     @classmethod
     def toJson(cls, obj, **kwargs):
