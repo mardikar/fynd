@@ -124,7 +124,7 @@ class SqliteDb(object):
 
     def __populateDb(self):
         cursor = self.__sqliteClient.cursor()
-        moviesData = simplejson.load(open("imdb_dataset.json"))
+        moviesData = simplejson.load(open("./imdb_dataset.json"))
         for movieData in moviesData:
             movieData = trimStrings(movieData)
             insertMovieQuery = "INSERT INTO movies VALUES('{name}',\
