@@ -9,9 +9,6 @@ from lib.services.service_logging.request_logging import FlaskRequestLoggingCont
 
 logger = logging
 
-app = flask.Flask(__name__)
-
-
 @wrapt.decorator
 def operation(wrapped, instance, args, kwargs):
     try:
@@ -50,7 +47,7 @@ class ServiceBase(object):
     SERVICE_ALIAS = "base"
     BASE_ENDPOINT = "/base/api/v1/"
 
-    def __init__(self):
+    def __init__(self, app):
         self.app = app
         self.serverModule = flask.Blueprint(self.SERVICE_NAME, __name__)
         self._operations = dict()

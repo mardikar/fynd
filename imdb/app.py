@@ -1,6 +1,6 @@
-from imdb.service import ImdbService, application
+from imdb.service import ImdbService
+import flask
 
 
-if __name__ == '__main__':
-    ImdbService().start()
-    application.run()
+application = flask.Flask(__name__)
+ImdbService(application).start()

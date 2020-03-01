@@ -3,10 +3,8 @@ import logging
 
 from imdb.cache import ImdbCache
 from lib.io.serializer.json_serializer import JsonSerializer
-from lib.services.rest.flask_service.base import ServiceBase, createJsonResponse, app
+from lib.services.rest.flask_service.base import ServiceBase, createJsonResponse
 from imdb.imdb_json_schemas import ImdbJsonSchemaValidtor
-
-application = app
 
 
 class HttpMethods(object):
@@ -18,8 +16,8 @@ class HttpMethods(object):
 
 class ImdbService(ServiceBase):
 
-    def __init__(self):
-        ServiceBase.__init__(self)
+    def __init__(self, app):
+        ServiceBase.__init__(self, app)
         self.cache = ImdbCache()
 
     def registerOperations(self):
