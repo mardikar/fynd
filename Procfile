@@ -1,1 +1,1 @@
-web: gunicorn imdb/service:app
+web: python imdb/service.py
