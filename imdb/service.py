@@ -91,4 +91,4 @@ class ImdbService(ServiceBase):
 
 if __name__ == '__main__':
     ImdbService().start()
-    application.run(host=application['HOST'], port=application['PORT'])
+    application.run()
