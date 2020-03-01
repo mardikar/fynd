@@ -1,6 +1,6 @@
 import sqlite3
 import simplejson
-import logging
+import os
 
 
 def trimStrings(d):
@@ -124,7 +124,9 @@ class SqliteDb(object):
 
     def __populateDb(self):
         cursor = self.__sqliteClient.cursor()
-        moviesData = simplejson.load(open("./imdb_dataset.json"))
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, 'imdb_dataset.json')
+        moviesData = simplejson.load(open(filename))
         for movieData in moviesData:
             movieData = trimStrings(movieData)
             insertMovieQuery = "INSERT INTO movies VALUES('{name}',\
