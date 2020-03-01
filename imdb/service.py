@@ -3,8 +3,10 @@ import logging
 
 from imdb.cache import ImdbCache
 from lib.io.serializer.json_serializer import JsonSerializer
-from lib.services.rest.flask_service.base import ServiceBase, createJsonResponse
+from lib.services.rest.flask_service.base import ServiceBase, createJsonResponse, app
 from imdb.imdb_json_schemas import ImdbJsonSchemaValidtor
+
+application = app
 
 
 class HttpMethods(object):
@@ -75,6 +77,9 @@ class ImdbService(ServiceBase):
             return self.getMovie()
         raise Exception("%s method is not supported" % httpMethod)
 
+    def run(self):
+        pass
+
     def start(self):
         self.cache.start()
         ServiceBase.start(self)
@@ -86,3 +91,4 @@ class ImdbService(ServiceBase):
 
 if __name__ == '__main__':
     ImdbService().start()
+    application.run(host=application['HOST'], port=application['PORT'])
