@@ -87,8 +87,3 @@ class ImdbService(ServiceBase):
     def stop(self):
         self.cache.stop()
         ServiceBase.stop(self)
-
-
-if __name__ == '__main__':
-    ImdbService().start()
-    application.run()
