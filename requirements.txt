@@ -17,5 +17,5 @@ pytz==2013.7
 requests==2.22.0
 
 six==1.4.1
-urllib3==1.25.8
+urllib3==1.26.5
 
